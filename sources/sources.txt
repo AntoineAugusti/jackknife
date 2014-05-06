@@ -1,0 +1,3 @@
+- http://books.google.fr/books?id=pQ-jRsoBi5YC&pg=PA84&lpg=PA84&dq=jackknife+medicine+statistics&source=bl&ots=9pRnmi7GGM&sig=OrayPe1_zNPtPsz4dtDjq9ieBgo&hl=fr&sa=X&ei=PuNoU-D4Fo3M0AWzkoGICA&ved=0CGAQ6AEwBA#v=onepage&q=jackknife&f=false
+	Bon exemple en page 104
+- L'article de Wikipédia en Français : http://fr.wikipedia.org/wiki/Jackknife
