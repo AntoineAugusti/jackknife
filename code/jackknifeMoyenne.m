@@ -2,18 +2,21 @@ clear all;
 close all;
 mu = 2;
 sigma = 1;
-nbEchantillons = 20;
-loiNormale = normrnd(mu, sigma, 1, nbEchantillons);
-disp(['** La moyenne de la loi normale est de : ', num2str(mean(loiNormale))]);
+echantillons = [62 78 79 80 82 82 83 85 87 91 96 97 97 97 101 120 135 180 270 400];
+nbEchantillons = length(echantillons);
+echantillons
+disp(['* La moyenne des échantillons : ', num2str(mean(echantillons))]);
 
 % Calcul des moyennes partielles
-moyennesPartielles = [];
+moyennesReduites = [];
 for i=1:nbEchantillons
-	matriceTest = loiNormale;
+	echantillonReduit = echantillons;
 	% On ne prend pas le ième élement
-	matriceTest(i) = [];
-	moyennesPartielles = [moyennesPartielles mean(matriceTest)];
-	disp(['Moyenne partielle sans le ', int2str(i), 'ème élément : ', num2str(mean(matriceTest))]);
+	echantillonReduit(i) = [];
+	moyennesReduites = [moyennesReduites mean(echantillonReduit)];
+	disp(['Moyenne partielle sans le ', int2str(i), 'ème élément : ', num2str(mean(echantillonReduit))]);
 end
 
-disp(['** La moyenne partielle est de : ', num2str(mean(moyennesPartielles))]);
+disp(['* La moyenne des moyennes réduites est de : ', num2str(mean(moyennesReduites))]);
+disp(['* Intervalle de confiance de 100 % sur les moyennes réduites : [', num2str(moyennesReduites(end)), '; ', num2str(moyennesReduites(1)), ']'])
+disp(['* Intervalle de confiance de 90 % sur les moyennes réduites : [', num2str(moyennesReduites(end-1)), '; ', num2str(moyennesReduites(2)), ']'])
