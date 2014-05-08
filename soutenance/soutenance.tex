@@ -75,51 +75,65 @@
 			\end{exampleblock}
 		\end{frame}
 
-	% ////////////////////////////////////////////// %
-	% /// Biais de l'estimateur de la moyenne ////// %
-	\section{Biais de l'estimateur de la moyenne}
-		\subsection{Biais de l'estimateur de la moyenne}
-			\begin{frame}
-			\frametitle{Biais de l'estimateur de la moyenne}
-			Soit $n$ observations indépendantes notées $x_1, \dots, x_n$ provenant d'une loi inconnue $X$ ayant une caractéristique $\theta$ que l'on souhaite estimer. Soit $T$ un estimateur de $\theta$. On souhaite connaître le biais et l'écart type de $T$.
+	% //////////////////////////////// %
+	% /// Estimation Jackknife ////// %
+	\section{Estimation Jackknife}
+		\subsection{Estimation Jackknife du biais}
+		\begin{frame}
+			\frametitle{Estimation Jackknife du biais}
+			Soit $n$ observations indépendantes notées $x_1, \dots, x_n$ provenant d'une loi inconnue $X$ ayant une caractéristique $\theta$ que l'on souhaite estimer. Soit $\hat{\theta}$ un estimateur de $\theta$.
 
-			\begin{equation}
-				E(T) = \theta + \frac{a_{1}(\theta)}{n} + \frac{a_{2}(\theta)}{n^2} + \dots
-			\end{equation}
+			\vspace{15px}
+			Méthode :
+			\begin{itemize}
+				\item Calcul des $n$ moyennes réduites : $\hat{\theta_i} = \frac{1}{n - 1}\sum\limits_{j \neq i } x_j$
+				\item Calcul du biais : $biais_{jack} = (n - 1)((\frac{1}{n} \sum\limits_{i=1}^n \hat{\theta_i}) - \hat{\theta})$
+			\end{itemize}
 
-			\textbf{Écart des moyennes réduites}
-			\begin{equation}
-				I_j = (n - 1)(T - T_{-j})
-			\end{equation}
-			où $T_{-j}$ est l'estimateur $T$ calculé sur $X$ sans l'échantillon $x_j$.
-
-			\vspace{5px}
-			\textbf{Biais principal de l'estimateur de la moyenne}
-			\begin{equation}
-				\overline{I} = \frac{1}{n} \sum\limits_{j=1}^n I_j = \frac{a_{1}(\theta)}{n}
-			\end{equation}
 
 		\end{frame}
 
-		\subsection{Exemple : biais de l'estimateur de la moyenne}
-			\begin{frame}
-			\frametitle{Exemple : biais de l'estimateur de la moyenne}
-			Soit $X = \{1, 2, 3, 4\}$ donc $n = 4$. On pose $T = \frac{1}{n} \sum\limits_{i=0}^n x_i  = \hat{\theta} = 2.5$
+		\begin{frame}
+			\frametitle{Estimation Jackknife du biais}
+			Si $\hat{\theta} = \overline{x} = \frac{1}{n} \sum\limits_{i=1}^n x_i \Leftrightarrow \frac{1}{n} \sum\limits_{i=1}^n \hat{\theta_i} = \hat{\theta}$, l'estimateur est sans biais.
 
-			On a alors :\\
-			$I_1 = (n - 1)(T - T_{-1}) = 3 (2.5 - 3) = -1.5$\\
-			$I_2 = 3 (2.5 - 2.66) = -0.48$\\
-			$I_3 = 3 (2.5 - 2.33) = 0.51$\\
-			$I_4 = 3 (2.5 - 2) = 1.5$\\
+			\vspace{15px}
+			On utilise alors l'estimateur de la variance :
+			\[\sigma^2 = \frac{\sum\limits_{i=1}^n (x_i - \overline{x}^2)}{n} \]
+
+			et l'estimateur Jackknife du biais devient alors :
+			\[biais_{jack} = \frac{-\sigma^2}{n} \]
+		\end{frame}
+
+		\subsection{Estimation Jackknife de l'erreur type}
+		\begin{frame}
+			\frametitle{Estimation Jackknife de l'erreur type}
+			Soit $n$ observations indépendantes notées $x_1, \dots, x_n$ provenant d'une loi inconnue $X$ ayant une caractéristique $\theta$ que l'on souhaite estimer. Soit $\hat{\theta}$ un estimateur de $\theta$.
+
+			\vspace{10px}
+			Par définition, l'erreur type d'une méthode d'estimation est l'écart type de l'estimateur utilisé.
+
+			\vspace{15px}
+			Méthode :
+			\begin{itemize}
+				\item Calcul des $n$ moyennes réduites : $\hat{\theta_i} = \frac{1}{n - 1}\sum\limits_{j \neq i } x_j$
+				\item Calcul de l'écart type : $ecartType_{jack} = \sqrt{\frac{(n - 1)}{n} \sum\limits_{i=1}^n ((\frac{1}{n} \sum\limits_{i=1}^n \hat{\theta_i}) - \hat{\theta_i})^2}$
+			\end{itemize}
+
+
+		\end{frame}
+
+		\begin{frame}
+			\frametitle{Estimation Jackknife de l'erreur type}
+			Si $\hat{\theta} = \overline{x}$ on a :\\
 
 			\vspace{5px}
-			et :\\
-			$\overline{I} = \frac{1}{n} \sum\limits_{j=1}^n I_j = \frac{1}{4} (-1.5 + -0.48 + 0.51 + 1.5) = \frac{3}{400}$
+			$\hat{\theta_i} = \frac{n\overline{x} - x_i}{n - 1}$ et $\frac{1}{n} \sum\limits_{i=1}^n \hat{\theta_i} = \overline{x}$\\
 
-			\vspace{5px}
-			la forme ajustée de $T$ avec biais est alors :\\
-			\[ \tilde{T} = T + \overline{I} = 2.5 + \frac{3}{400} = 2.5075 \]
-
+			\vspace{15px}
+			Ainsi :
+			\[ecartType_{jack} = \sqrt{\sum\limits_{i=1}^n \frac{(x_i - \overline{x})^2}{n}} = \frac{\overline{\sigma}}{\sqrt{n}}\]
+			où $\overline{\sigma}$ est l'écart type sans biais.
 		\end{frame}
 % Fin du document
 \end{document}
