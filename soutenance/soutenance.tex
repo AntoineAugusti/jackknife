@@ -31,7 +31,16 @@
 	\vspace{10px}
 	Antoine \textsc{Augusti}
 }
-\date{}
+\date{19 mai 2014}
+
+% Générer une page de titre à chaque début de section
+\AtBeginSection[]
+{
+	\begin{frame}[plain]
+	\frametitle{Sommaire}
+	\tableofcontents[currentsection, hideothersubsections]
+	\end{frame}
+}
 
 % Début du document
 \begin{document}
@@ -134,6 +143,24 @@
 			Ainsi :
 			\[ecartType_{jack} = \sqrt{\sum\limits_{i=1}^n \frac{(x_i - \overline{x})^2}{n}} = \frac{\overline{\sigma}}{\sqrt{n}}\]
 			où $\overline{\sigma}$ est l'écart type sans biais.
+		\end{frame}
+
+	% ///////////////////////////////////// %
+	% /// Évaluation de la stabilité ////// %
+	\section{Évaluation de la stabilité}
+		\subsection{Approche intuitive}
+		\begin{frame}
+			\frametitle{Approche intuitive}
+			On enlève une observation à l'extrémité de l'ensemble des observations et on calcule la moyenne réduite (\textit{la moyenne sans prendre en compte cette observation}).
+
+			\vspace{15px}
+			La moyenne est trop fragile pour être stable si :
+			\begin{itemize}
+				\item la moyenne réduite est proportionnellement trop éloignée de la moyenne originale \textbf{OU} la moyenne réduite est en dehors d'un intervalle défini comme acceptable
+				\item l'ensemble des observations est suffisamment petit pour que cet événement ait une probabilité suffisante de se produire
+			\end{itemize}
+
+
 		\end{frame}
 % Fin du document
 \end{document}
