@@ -21,6 +21,12 @@
 \setbeamertemplate{footline}[frame number]
 \setbeamertemplate{blocks}[shadow=false]
 
+\newcommand{\intervalleoo}[2]{\mathopen{]}#1\,;#2\mathclose{[}}
+\newcommand{\intervalleff}[2]{\mathopen{[}#1\,;#2\mathclose{]}}
+\newcommand{\intervalleof}[2]{\mathopen{]}#1\,;#2\mathclose{]}}
+\newcommand{\intervallefo}[2]{\mathopen{[}#1\,;#2\mathclose{[}}
+\newcommand{\intervalle}[2]{\mathopen{(}#1\,;#2\mathclose{)}}
+
 % ------------------------------------ %
 % -- METADONNÉES DU DOCUMENT --------- %
 \title{
@@ -61,6 +67,10 @@
 	% /// Présentation /////////////// %
 	\section{Présentation}
 
+
+		%%
+		%%% Le ré-échantillonnage
+		%%
 		\subsection{Le ré-échantillonnage}
 		\begin{frame}
 			\frametitle{Le ré-échantillonnage}
@@ -87,6 +97,10 @@
 	% //////////////////////////////// %
 	% /// Estimation Jackknife ////// %
 	\section{Estimation Jackknife}
+
+		%%
+		%%% Estimation Jackknife du biais
+		%%
 		\subsection{Estimation Jackknife du biais}
 		\begin{frame}
 			\frametitle{Estimation Jackknife du biais}
@@ -114,6 +128,10 @@
 			\[biais_{jack} = \frac{-\sigma^2}{n} \]
 		\end{frame}
 
+
+		%%
+		%%% Estimation Jackknife de l'erreur type
+		%%
 		\subsection{Estimation Jackknife de l'erreur type}
 		\begin{frame}
 			\frametitle{Estimation Jackknife de l'erreur type}
@@ -148,6 +166,10 @@
 	% ///////////////////////////////////// %
 	% /// Évaluation de la stabilité ////// %
 	\section{Évaluation de la stabilité}
+
+		%%
+		%%% Approche intuitive
+		%%
 		\subsection{Approche intuitive}
 		\begin{frame}
 			\frametitle{Approche intuitive}
@@ -159,8 +181,58 @@
 				\item la moyenne réduite est proportionnellement trop éloignée de la moyenne originale \textbf{OU} la moyenne réduite est en dehors d'un intervalle défini comme acceptable
 				\item l'ensemble des observations est suffisamment petit pour que cet événement ait une probabilité suffisante de se produire
 			\end{itemize}
+		\end{frame}
 
 
+		%%
+		%%% Exemple : décision à propos de la stabilité
+		%%
+		\subsection{Exemple : décision à propos de la stabilité}
+		\begin{frame}
+			\frametitle{Exemple : décision à propos de la stabilité}
+			Rappels des variables :
+			\begin{itemize}
+				\item $\hat{\theta} = 120.1 $
+				\item $imr_{90 \%} = \intervalleff{112.21}{122.32} \Leftrightarrow P(\hat{\theta} \in \intervalleff{112.21}{122.32}) = 0.9$ (suppression de 62 et 400)
+			\end{itemize}
+
+			\vspace{10px}
+			Suppression de la valeur la plus élevée (400) :
+			\begin{itemize}
+				\item $\hat{\theta}_{20} = 105.37 $ réduction de la moyenne de 12.3\%
+				\item probabilité $P(\hat{\theta} = 105.37) = \frac{1}{20} = 5 \%$
+			\end{itemize}
+
+			\vspace{10px}
+			Mais $imr_{90 \%} = \intervalleff{112.21}{122.32}$ indique que la probabilité que la moyenne réduite diminue à $112.21$ (réduction de 7\%) est de seulement 10\%. La borne supérieure $122.32$ est très proche de $\hat{\theta}$.\\
+
+			\vspace{10px}
+			On va se focaliser sur l'élimination de \textbf{la valeur extrême supérieure} (400).
+		\end{frame}
+
+		\subsection{Exemple : décision à propos de la stabilité (suite)}
+		\begin{frame}
+			\frametitle{Exemple : décision à propos de la stabilité (suite)}
+			Récapitulatif :
+			\begin{itemize}
+				\item 5 \% de proba que la moyenne diminue de 120.1 à \textbf{105.37} (12 \% de changement)
+				\item 10 \% de proba que la moyenne diminue de 120.1 à \textbf{112.21} (7 \% de changement)
+			\end{itemize}
+
+			\vspace{5px}
+			Décision ?
+			\begin{itemize}
+				\item troublé par ces proportions ou ces probabilités $\Rightarrow$ on décide que la moyenne est \textbf{instable}
+				\item ces changements paraissent vraisemblables $\Rightarrow$ on décide que la moyenne est \textbf{stable}
+			\end{itemize}
+
+			\vspace{5px}
+			Avantages et inconvénients :
+			\begin{itemize}
+				\item Vision claire de ce qui arrive si on supprime un élément aux extrémités des observations
+				\item calculs faciles et rapides
+				\item pas de procédure de décision standardisée
+			\end{itemize}
 		\end{frame}
 % Fin du document
 \end{document}
