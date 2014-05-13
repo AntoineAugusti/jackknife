@@ -1,0 +1,66 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+% Pour les checkmarks
+\usepackage{pifont}
+\usepackage{amssymb}
+% Pour des \hline en gras
+\usepackage{makecell}
+
+\newcommand{\hlineGras}{\Xhline{2\arrayrulewidth}}
+
+\title {Fiche de suivi - projet de statistiques\\ Estimateur Jackknife}
+\author{Manon Ansart\\ Antoine Augusti}
+\date{16 mai 2014}
+
+\begin{document}
+
+	\maketitle
+
+	\section{Présentation du sujet}
+	Nous avons choisi lors de ce projet de statistiques de travailler sur l'estimateur Jackknife. L'estimateur Jackknife permet d'estimer la précision d'un échantillon statistique : d'une médiane, de la variance, d'un quantile. Pour cela, il utilise des sous-ensembles des données disponibles observées.
+
+	\section{Plan du projet}
+	Retrouvez ci-dessous l'approche que nous avons choisi de prendre pour présenter notre projet.
+	
+	\vspace{10px}
+	\begin{enumerate}
+		\item Présentation : principe du ré-échantillonnage
+		\item Estimation Jackknife
+		\begin{enumerate}
+			\item Estimation Jackknife du biais 
+			\item Estimation Jackknife de l'erreur type 
+		\end{enumerate}
+		\item Évaluation de la stabilité
+		\begin{enumerate}
+			\item Approche intuitive
+			\item Décision à propos de la stabilité (exemple) 
+		\end{enumerate}
+	\end{enumerate}
+
+
+	\section{Répartition du travail}
+	Retrouvez dans le tableau ci-dessous comment nous avons réparti entre nous les différentes parties de ce projet.
+	
+	\vspace{10px}
+	\begin{center}
+		\begin{tabular}
+		{| l || c | c |} \hline
+		Partie & Manon Ansart & Antoine Augusti \\ \hline \hline
+		\textbf{Présentation} & & \\ \hline
+		Principe du ré-échantillonnage & \checkmark & \checkmark \\ \hline
+		\hlineGras
+		\textbf{Estimation Jackknife} & & \\ \hline
+		Estimation Jackknife du biais  & & \checkmark  \\ \hline
+		Estimation Jackknife de l'erreur type & \checkmark &  \\ \hline
+		\hlineGras
+		\textbf{Évaluation de la stabilité} & & \\ \hline
+		Approche intuitive  & & \checkmark \\ \hline
+		Décision à propos de la stabilité (exemple)  & & \checkmark \\ \hline
+		\end{tabular}
+	\end{center}
+
+\end{document}
