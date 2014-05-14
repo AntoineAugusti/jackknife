@@ -67,31 +67,58 @@
 	% /// Présentation /////////////// %
 	\section{Présentation}
 
-
 		%%
-		%%% Le ré-échantillonnage
+		%%% Origine
 		%%
-		\subsection{Le ré-échantillonnage}
+		\subsection{Origine}
 		\begin{frame}
-			\frametitle{Le ré-échantillonnage}
-
-			L'objectif de l'estimateur Jackknife :
+			\frametitle{Origine}
+			
+			Création :
 			\begin{itemize}
-				\item estimer la précision d'un échantillon statistique : d'une médiane, de la variance, d'un quantile\dots
+				\item Proposé par Quenouille dans les années 50 pour le calcul de biais
+				\item Repris par Tuckey pour l'estimation de la variance, tester une hypothèse ou établir un intervalle de confiance
 			\end{itemize}
 
-			\vspace{15px}
-
-			La méthode utilisée :
-			\begin{itemize}
-				\item utilisation de sous-ensembles des données disponibles observées
-			\end{itemize}
 
 			\vspace{20px}
 
-			\begin{exampleblock}{Bootstrap}
-				Même objectif que le Jackknife mais utilisation d'un tirage aléatoire avec remise à partir de l'ensemble des données.
+			\begin{exampleblock}{Que signifie Jackknife ?}
+				Jackknife signifie en anglais couteau suisse. Cet outil a été nommé ainsi car, comme l'objet, c'est un outil pratique et rapide pouvant remplacer des outils plus sophistiqués et compliqués.
 			\end{exampleblock}
+		\end{frame}
+		
+	
+		%%
+		%%% Principe
+		%%
+		\subsection{Principe}
+		\begin{frame}
+			\frametitle{Principe}
+% 
+% 			L'objectif de l'estimateur Jackknife :
+% 			\begin{itemize}
+% 				\item estimer la précision d'un échantillon statistique : d'une médiane, de la variance, d'un quantile\dots
+% 			\end{itemize}
+% 
+% 			\vspace{15px}
+
+			La méthode utilisée :
+			\begin{itemize}
+				\item On souhaite estimer un paramètre $\theta$ sur un echantillon composé de n observations par un estimateur $\hat{\theta} = f(x_1,...x_i,...x_n)$
+				\item Calcul de l'estimateur sur l'échantillon privé d'une observation $x_i$ : $\hat{\theta_i} = f(x_1,...x_{i-1},x_{i+1},...x_n)$
+				\item Calcul de la pseudo-valeur Jackknife : $\hat{\theta_i}^* = n\hat{\theta} - (n-1) \hat{\theta_i}$
+			\end{itemize}
+			
+			\vspace{15px}
+			
+			On répète ces deux dernière étapes pour chaque observation de l'échantillon. Les valeurs obtenues sont ensuite utilisées pour estimer la précision d'un échantillon statistique ou calculer le biais d'un estimateur par exemple.
+
+% 			\vspace{20px}
+% 
+% 			\begin{exampleblock}{Bootstrap}
+% 				Même objectif que le Jackknife mais utilisation d'un tirage aléatoire avec remise à partir de l'ensemble des données.
+% 			\end{exampleblock}
 		\end{frame}
 
 	% //////////////////////////////// %
