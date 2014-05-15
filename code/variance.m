@@ -2,7 +2,7 @@ clear all;
 close all;
 
 moyenne = 100;
-variance = 6;
+variance = 5;
 n = 10;
 
 data= randn(n,1).*sqrt(variance)+moyenne;
@@ -30,5 +30,5 @@ varianceJackknife = mean(pseudoval)
 varianceJackknifeTh = mean(pseudovalTh);
 
 %%Pour trouver le problème :
-ecart = pseudoval'-pseudovalTh' % = pseudoval-pseudovalTh = varianceJackknife - varianceTh
+ecart = pseudoval'-pseudovalTh' % = pseudoval-pseudovalTh
 varianceJackknife - varianceTh
