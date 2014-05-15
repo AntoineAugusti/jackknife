@@ -123,7 +123,7 @@
 
 	% //////////////////////////////// %
 	% /// Estimation Jackknife ////// %
-	\section{Estimation Jackknife}
+	\section{Application au biais}
 
 		%%
 		%%% Estimation Jackknife du biais
@@ -136,7 +136,7 @@
 			\vspace{15px}
 			Méthode :
 			\begin{itemize}
-				\item Calcul des $n$ moyennes réduites : $\hat{\theta_i} = \frac{1}{n - 1}\sum\limits_{j \neq i } x_j$
+				\item Calcul des $n$ estimateurs sur l'échantillon privé d'une observation $x_i$ : $\hat{\theta_i} = f(x_1,...x_{i-1},x_{i+1},...x_n)$
 				\item Calcul du biais : $biais_{jack} = (n - 1)((\frac{1}{n} \sum\limits_{i=1}^n \hat{\theta_i}) - \hat{\theta})$
 			\end{itemize}
 
@@ -154,45 +154,30 @@
 			et l'estimateur Jackknife du biais devient alors :
 			\[biais_{jack} = \frac{-\hat{\sigma^2}}{n} \]
 		\end{frame}
-
-
+		
 		%%
-		%%% Estimation Jackknife de l'erreur type
+		%%% Estimation Jackknife du biais
 		%%
-		\subsection{Estimation Jackknife de l'erreur type}
+		\subsection{Réduction du biais}		
 		\begin{frame}
-			\frametitle{Estimation Jackknife de l'erreur type}
-			Soit $n$ observations indépendantes notées $x_1, \dots, x_n$ provenant d'une loi inconnue $X$ ayant une caractéristique $\theta$ que l'on souhaite estimer. Soit $\hat{\theta}$ un estimateur de $\theta$.
-
-			\vspace{10px}
-			Par définition, l'erreur type d'une méthode d'estimation est l'écart type de l'estimateur utilisé.
-
+			\frametitle{Réduction du biais}
+			Après avoir calculé le biais, on peut chercher à le réduire en calculant l'estimateur Jackknife.
 			\vspace{15px}
 			Méthode :
 			\begin{itemize}
-				\item Calcul des $n$ moyennes réduites : $\hat{\theta_i} = \frac{1}{n - 1}\sum\limits_{j \neq i } x_j$
-				\item Calcul de l'écart type : $ecartType_{jack} = \sqrt{\frac{(n - 1)}{n} \sum\limits_{i=1}^n ((\frac{1}{n} \sum\limits_{i=1}^n \hat{\theta_i}) - \hat{\theta_i})^2}$
+				\item Calcul des pseudo-valeurs Jackknife : $\hat{\theta_i}^* = n\hat{\theta} - (n-1) \hat{\theta_i}$
+				\item Calcul de l'estimateur Jackknife : $\hat{\theta}^* = \frac{1}{n} \sum\limits_{i=1}^n \hat{\theta_i}^*$
 			\end{itemize}
-
-
-		\end{frame}
-
-		\begin{frame}
-			\frametitle{Estimation Jackknife de l'erreur type}
-			Si $\hat{\theta} = \overline{x}$ on a :\\
-
-			\vspace{5px}
-			$\hat{\theta_i} = \frac{n\overline{x} - x_i}{n - 1}$ et $\frac{1}{n} \sum\limits_{i=1}^n \hat{\theta_i} = \overline{x}$\\
-
 			\vspace{15px}
-			Ainsi :
-			\[ecartType_{jack} = \sqrt{\sum\limits_{i=1}^n \frac{(x_i - \overline{x})^2}{n}} = \frac{\overline{\sigma}}{\sqrt{n}}\]
-			où $\overline{\sigma}$ est l'écart type sans biais.
+			Exemple : Estimation Jackknife de la variance sur matlab
 		\end{frame}
+
+
+
 
 	% ///////////////////////////////////// %
 	% /// Évaluation de la stabilité ////// %
-	\section{Évaluation de la stabilité}
+	\section{Application à l'évaluation de la stabilité}
 
 		%%
 		%%% Approche intuitive
@@ -261,5 +246,54 @@
 				\item pas de procédure de décision standardisée
 			\end{itemize}
 		\end{frame}
+		
+		
+		\section{Autres applications}
+		%%
+		%%% Autres estimations
+		%%
+		\subsection{Autres estimations}
+		\begin{frame}
+			\frametitle{Autres estimations}
+			\begin{itemize}
+				\item Intervalle de confiance à $\alpha - 1$ : $I_{\alpha-1} = t_{\frac{\alpha}{2};n-1}\sqrt{\hat{\sigma_i}^2}$ avec $\hat{\sigma_i}^2(\hat{\theta}^*) = \frac{1}{n}\hat{\sigma_i}^2(\hat{\theta_i}^*) = \frac{1}{n(n-1)}\sum\limits_{i=1}^n (\hat{\theta}^* - \hat{\theta_i}^*)^2$
+				\item Calcul de l'écart type : $ecartType_{jack} = \sqrt{\frac{(n - 1)}{n} \sum\limits_{i=1}^n ((\frac{1}{n} \sum\limits_{i=1}^n \hat{\theta_i}) - \hat{\theta_i})^2}$
+				\item Test d'hypothèse $H_0 : \theta = \theta_0$
+			\end{itemize}
+		\end{frame}
+		
+		%%
+		%%% Autres méthodes
+		%%
+		\subsection{Autres méthodes}
+		\begin{frame}
+			\frametitle{Autres méthodes}
+			Limites du Jackknife :
+			\begin{itemize}
+				\item Inefficace pour travailler sur des variables peu stables, qui changent beaucoup pour un petit changement de données, telles que la médiane
+			\end{itemize}
+			\vspace{15px}
+			Évolutions du Jackknife :
+			\begin{itemize}
+				\item Bootstrap : Même principe que le Jackknife mais utilisation d'un tirage aléatoire avec remise à partir de l'ensemble des données.
+				\item Jackknife par bloc : Même principe mais on ignore un nombre fixé d'obeservations 
+			\end{itemize}
+
+		\end{frame}
+
+% 		\begin{frame}
+% 			\frametitle{Estimation Jackknife de l'erreur type}
+% 			Si $\hat{\theta} = \overline{x}$ on a :\\
+% 
+% 			\vspace{5px}
+% 			$\hat{\theta_i} = \frac{n\overline{x} - x_i}{n - 1}$ et $\frac{1}{n} \sum\limits_{i=1}^n \hat{\theta_i} = \overline{x}$\\
+% 
+% 			\vspace{15px}
+% 			Ainsi :
+% 			\[ecartType_{jack} = \sqrt{\sum\limits_{i=1}^n \frac{(x_i - \overline{x})^2}{n}} = \frac{\overline{\sigma}}{\sqrt{n}}\]
+% 			où $\overline{\sigma}$ est l'écart type sans biais.
+% 		\end{frame}
+
+
 % Fin du document
 \end{document}
