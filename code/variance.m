@@ -3,7 +3,7 @@ close all;
 
 moyenne = 100;
 variance = 5;
-n = 10;
+n = 100;
 
 data= randn(n,1).*sqrt(variance)+moyenne;
 
@@ -24,11 +24,5 @@ for i=1:n-1
 	pseudovalTh(i) = n/(n-1)*(data(i)-mean(data)).^2;
 end
 
-%pseudoval'
-%pseudovalTh'
-varianceJackknife = mean(pseudoval)
-varianceJackknifeTh = mean(pseudovalTh);
 
-%%Pour trouver le problème :
-ecart = pseudoval'-pseudovalTh' % = pseudoval-pseudovalTh
-varianceJackknife - varianceTh
+varianceJackknife = mean(pseudoval)
