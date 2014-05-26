@@ -3,7 +3,7 @@ close all;
 
 moyenne = 100;
 variance = 5;
-n = 100;
+n = 50;
 
 data= randn(n,1).*sqrt(variance)+moyenne;
 
@@ -26,3 +26,4 @@ end
 
 
 varianceJackknife = mean(pseudoval)
+clear all;

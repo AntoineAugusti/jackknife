@@ -73,7 +73,7 @@
 		\subsection{Origine}
 		\begin{frame}
 			\frametitle{Origine}
-			
+
 			Création :
 			\begin{itemize}
 				\item Proposé par Quenouille dans les années 50 pour le calcul de biais
@@ -87,20 +87,20 @@
 				Jackknife signifie en anglais couteau suisse. Cet outil a été nommé ainsi car, comme l'objet, c'est un outil pratique et rapide pouvant remplacer des outils plus sophistiqués et compliqués.
 			\end{exampleblock}
 		\end{frame}
-		
-	
+
+
 		%%
 		%%% Principe
 		%%
 		\subsection{Principe}
 		\begin{frame}
 			\frametitle{Principe}
-% 
+%
 % 			L'objectif de l'estimateur Jackknife :
 % 			\begin{itemize}
 % 				\item estimer la précision d'un échantillon statistique : d'une médiane, de la variance, d'un quantile\dots
 % 			\end{itemize}
-% 
+%
 % 			\vspace{15px}
 
 			La méthode utilisée :
@@ -109,13 +109,13 @@
 				\item Calcul de l'estimateur sur l'échantillon privé d'une observation $x_i$ : $\hat{\theta_i} = f(x_1,...x_{i-1},x_{i+1},...x_n)$
 				\item Calcul de la pseudo-valeur Jackknife : $\hat{\theta_i}^* = n\hat{\theta} - (n-1) \hat{\theta_i}$
 			\end{itemize}
-			
+
 			\vspace{15px}
-			
+
 			On répète ces deux dernière étapes pour chaque observation de l'échantillon. Les valeurs obtenues sont ensuite utilisées pour estimer la précision d'un échantillon statistique ou calculer le biais d'un estimateur par exemple.
 
 % 			\vspace{20px}
-% 
+%
 % 			\begin{exampleblock}{Bootstrap}
 % 				Même objectif que le Jackknife mais utilisation d'un tirage aléatoire avec remise à partir de l'ensemble des données.
 % 			\end{exampleblock}
@@ -148,17 +148,17 @@
 			Si $\hat{\theta} = \overline{x} = \frac{1}{n} \sum\limits_{i=1}^n x_i \Leftrightarrow \frac{1}{n} \sum\limits_{i=1}^n \hat{\theta_i} = \hat{\theta}$, l'estimateur est sans biais.
 
 			\vspace{15px}
-			On utilise alors l'estimateur de la variance :
+			Calcul de l'estimateur de la variance :
 			\[\hat{\sigma^2} = \frac{\sum\limits_{i=1}^n (x_i - \overline{x})^2}{n} \]
 
 			et l'estimateur Jackknife du biais devient alors :
 			\[biais_{jack} = \frac{-\hat{\sigma^2}}{n} \]
 		\end{frame}
-		
+
 		%%
 		%%% Estimation Jackknife du biais
 		%%
-		\subsection{Réduction du biais}		
+		\subsection{Réduction du biais}
 		\begin{frame}
 			\frametitle{Réduction du biais}
 			Après avoir calculé le biais, on peut chercher à le réduire en calculant l'estimateur Jackknife.
@@ -169,7 +169,7 @@
 				\item Calcul de l'estimateur Jackknife : $\hat{\theta}^* = \frac{1}{n} \sum\limits_{i=1}^n \hat{\theta_i}^*$
 			\end{itemize}
 			\vspace{15px}
-			Exemple : Estimation Jackknife de la variance sur matlab
+			Exemple : Estimation Jackknife de la variance sur Octave
 		\end{frame}
 
 
@@ -246,8 +246,8 @@
 				\item pas de procédure de décision standardisée
 			\end{itemize}
 		\end{frame}
-		
-		
+
+
 		\section{Autres applications}
 		%%
 		%%% Autres estimations
@@ -256,12 +256,12 @@
 		\begin{frame}
 			\frametitle{Autres estimations}
 			\begin{itemize}
-				\item Intervalle de confiance à $\alpha - 1$ : $I_{\alpha-1} = t_{\frac{\alpha}{2};n-1}\sqrt{\hat{\sigma_i}^2}$ avec $\hat{\sigma_i}^2(\hat{\theta}^*) = \frac{1}{n}\hat{\sigma_i}^2(\hat{\theta_i}^*) = \frac{1}{n(n-1)}\sum\limits_{i=1}^n (\hat{\theta}^* - \hat{\theta_i}^*)^2$
+				\item Intervalle de confiance à $1 - \alpha$ : $I_{1 - \alpha} = t_{\frac{\alpha}{2};n-1}\sqrt{\hat{\sigma_i}^2}$ avec $\hat{\sigma_i}^2(\hat{\theta}^*) = \frac{1}{n}\hat{\sigma_i}^2(\hat{\theta_i}^*) = \frac{1}{n(n-1)}\sum\limits_{i=1}^n (\hat{\theta}^* - \hat{\theta_i}^*)^2$
 				\item Calcul de l'écart type : $ecartType_{jack} = \sqrt{\frac{(n - 1)}{n} \sum\limits_{i=1}^n ((\frac{1}{n} \sum\limits_{i=1}^n \hat{\theta_i}) - \hat{\theta_i})^2}$
 				\item Test d'hypothèse $H_0 : \theta = \theta_0$
 			\end{itemize}
 		\end{frame}
-		
+
 		%%
 		%%% Autres méthodes
 		%%
@@ -276,7 +276,7 @@
 			Évolutions du Jackknife :
 			\begin{itemize}
 				\item Bootstrap : Même principe que le Jackknife mais utilisation d'un tirage aléatoire avec remise à partir de l'ensemble des données.
-				\item Jackknife par bloc : Même principe mais on ignore un nombre fixé d'obeservations 
+				\item Jackknife par bloc : Même principe mais on ignore un nombre fixé d'observations
 			\end{itemize}
 
 		\end{frame}
@@ -284,10 +284,10 @@
 % 		\begin{frame}
 % 			\frametitle{Estimation Jackknife de l'erreur type}
 % 			Si $\hat{\theta} = \overline{x}$ on a :\\
-% 
+%
 % 			\vspace{5px}
 % 			$\hat{\theta_i} = \frac{n\overline{x} - x_i}{n - 1}$ et $\frac{1}{n} \sum\limits_{i=1}^n \hat{\theta_i} = \overline{x}$\\
-% 
+%
 % 			\vspace{15px}
 % 			Ainsi :
 % 			\[ecartType_{jack} = \sqrt{\sum\limits_{i=1}^n \frac{(x_i - \overline{x})^2}{n}} = \frac{\overline{\sigma}}{\sqrt{n}}\]
